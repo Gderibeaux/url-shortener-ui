@@ -13,14 +13,27 @@ export class App extends Component {
   }
 
   componentDidMount() {
+    getUrls()
+    .catch((error) => {
+      console.error(error.message);
+      this.setState({ error: error.message });
+    })
+    .then((data) => {
+      this.setState({ urls: data.urls });
+    });
+  }
+
+  addUrl = url => {
+    this.setState({ urls: [...this.state.urls, url] });
   }
 
   render() {
     return (
       <main className="App">
+        <h1>{console.log('PROPS', this.state.urls)}</h1>
         <header>
           <h1>URL Shortener</h1>
-          <UrlForm />
+          <UrlForm addUrl={this.addUrl}/>
         </header>
 
         <UrlContainer urls={this.state.urls}/>

@@ -2,6 +2,7 @@ import React from 'react';
 import './UrlContainer.css';
 
 const UrlContainer = props => {
+  console.log('NEWPROPs', props.urls.urls)
   const urlEls = props.urls.map(url => {
     return (
       <div className="url">
@@ -12,6 +13,7 @@ const UrlContainer = props => {
     )
   });
 
+  console.log('urlELs', urlEls); 
   return (
     <section>
       { urlEls.length ? urlEls : <p>No urls yet! Find some to shorten!</p> }
